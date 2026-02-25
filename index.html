@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arman Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* --- Fixed Floating Background --- */
+        .wave-container {
+            position: fixed; /* Background ko fix kar diya */
+            width: 100%;
+            height: 100vh;
+            bottom: 0;
+            left: 0;
+            z-index: -1; /* Content ke piche rahega */
+            pointer-events: none;
+        }
+
+        .waves {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40vh; /* Wave ki height */
+        }
+
+        .parallax > use {
+            animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+        }
+        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+
+        @keyframes move-forever {
+            0% { transform: translate3d(-90px, 0, 0); }
+            100% { transform: translate3d(85px, 0, 0); }
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 10%;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 1.4rem; font-weight: bold; }
+        .logo span { color: #00d4ff; }
+        .nav-links { list-style: none; display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: #555; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: #00d4ff; }
+
+        /* --- Sections Style --- */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 10%;
+            position: relative;
+        }
+
+        /* Home/Hero Section */
+        .hero-content { text-align: center; }
+        .profile-pic {
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0px 10px 30px rgba(0, 119, 255, 0.1);
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 3.5rem; letter-spacing: 8px; text-transform: uppercase; font-weight: 300; }
+        .tagline { color: #888; letter-spacing: 3px; font-size: 0.85rem; margin-top: 10px; }
+
+        /* Cards Styling */
+        .section-title { font-size: 2rem; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 3px; }
+        
+        .container-grid {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.7); /* Transparent white */
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.5);
+            transition: 0.4s;
+        }
+        .card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.9); }
+        .card i { font-size: 2.5rem; color: #00d4ff; margin-bottom: 15px; }
+
+        /* --- Footer --- */
+        footer {
+            padding: 50px 10%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        .social-icons { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+        .social-icons a {
+            width: 50px; height: 50px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #333; font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .social-icons a:hover { background: #00d4ff; color: #fff; transform: scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Arman<span>Portfolio</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#qualification">Qualification</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <div class="wave-container">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use href="#gentle-wave" x="48" y="0" fill="rgba(212, 230, 255, 0.7)" />
+                <use href="#gentle-wave" x="48" y="3" fill="rgba(212, 230, 255, 0.5)" />
+                <use href="#gentle-wave" x="48" y="5" fill="rgba(212, 230, 255, 0.3)" />
+                <use href="#gentle-wave" x="48" y="7" fill="#f4f8ff" />
+            </g>
+        </svg>
+    </div>
+
+    <section id="home">
+        <div class="hero-content">
+            <img src="c:\Users\03\Downloads\IMG_7392.jpg" alt="Arman" class="profile-pic">
+            <h1>Arman</h1>
+            <p class="tagline">WEB DEVELOPER | DESIGNER</p>
+        </div>
+    </section>
+
+    <section id="qualification">
+        <h2 class="section-title">Qualification</h2>
+        <div class="container-grid">
+            <div class="card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>10th DMC</h3>
+                <p></p>with avg 92 percentage</p>
+                <p><strong>2023 - 2024</strong></p>
+            </div>
+            <div class="card">
+                <i class="fas fa-school"></i>
+                <h3>Higher Secondary</h3>
+                <p>Focused on Science & IT</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="container-grid">
+            <div class="card">
+                <i class="fas fa-code"></i>
+                <h3>Modern Portfolio</h3>
+                <p>A sleek, responsive portfolio with wave animations.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>E-Commerce UI</h3>
+                <p>Clean and minimal design for online shopping.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h3>Get In Touch</h3>
+        <div class="social-icons">
+           
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/arman__hr_?igsh=MTRvbzYyMzg2bmY4aQ=="><i class="fab fa-instagram"></i></a>
+            <a href="21arman2100@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.8rem; color: #888;">&copy; 2024 Arman Portfolio. Designed with ❤️</p>
+    </footer>
+
+</body>
+</html>
